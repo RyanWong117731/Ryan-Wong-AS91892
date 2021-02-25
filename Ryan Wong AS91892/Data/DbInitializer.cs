@@ -21,8 +21,10 @@ namespace Ryan_Wong_AS91892.Data
 
             var Items = new Item[]
             {
-                new Item {Name="Gun",Description="Bang!",Price=12,ItemType="Weapon"}
-               
+                new Item {Name="Gun",Description="Bang!",Price=12,ItemType="Weapon"},
+                new Item {Name="Knife",Description="ow",Price=11,ItemType="Weapon"},
+                new Item {Name="Strong potion",Description="you cannot handle my potions traveler",Price=5,ItemType="Potion"}
+
             };
 
             context.Items.AddRange(Items);
