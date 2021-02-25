@@ -14,22 +14,26 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Item[0].Name)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.Items[0].Name)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Item[0].Description)
+                @Html.DisplayNameFor(model => model.Items[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Item[0].Price)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.PriceSort">
+                    @Html.DisplayNameFor(model => model.Items[0].Price)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Item[0].ItemType)
+                @Html.DisplayNameFor(model => model.Items[0].ItemType)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Item) {
+        @foreach (var item in Model.Items)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -49,6 +53,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.ItemID">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

@@ -12,18 +12,41 @@ namespace Ryan_Wong_AS91892.Pages.Items
 {
     public class IndexModel : PageModel
     {
-        private readonly Ryan_Wong_AS91892.Data.ItemShopContext _context;
-
-        public IndexModel(Ryan_Wong_AS91892.Data.ItemShopContext context)
+        private readonly ItemShopContext _context;
+        public IndexModel(ItemShopContext context)
         {
             _context = context;
         }
 
-        public IList<Item> Item { get;set; }
+        public string NameSort { get; set; }
+        public string PriceSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
 
-        public async Task OnGetAsync()
+        public IList<Item> Items { get; set; }
+
+        public async Task OnGetAsync(string sortOrder)
         {
-            Item = await _context.Items.ToListAsync();
+            // using System;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            PriceSort = sortOrder == "Price" ? "Price_desc" : "Price";
+            IQueryable<Item> studentsIQ = from s in _context.Items
+                                             select s;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.Name);
+                    break;
+                case "Price":
+                    studentsIQ = studentsIQ.OrderBy(s => s.Price);
+                    break;
+                default:
+                    studentsIQ = studentsIQ.OrderBy(s => s.ItemID);
+                    break;
+            }
+
+            Items = await studentsIQ.AsNoTracking().ToListAsync();
         }
     }
 }
