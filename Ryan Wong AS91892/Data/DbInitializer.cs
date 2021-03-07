@@ -30,12 +30,12 @@ namespace Ryan_Wong_AS91892.Data
             context.Items.AddRange(Items);
             context.SaveChanges();
 
-            var Staff = new Staff[]
+            var Staffs = new Staff[]
             {
                 new Staff{FirstName="Gus", LastName="Carsons",HireDate=DateTime.Parse("2019-09-01"),Wages=5}
             };
 
-            context.Staff.AddRange(Staff);
+            context.Staffs.AddRange(Staffs);
             context.SaveChanges();
 
             var Stores = new Store[]

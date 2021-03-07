@@ -12,8 +12,9 @@ namespace Ryan_Wong_AS91892.Pages.Items
 {
     public class IndexModel : PageModel
     {
-        private readonly ItemShopContext _context;
-        public IndexModel(ItemShopContext context)
+        private readonly Ryan_Wong_AS91892.Data.ItemShopContext _context;
+
+        public IndexModel(Ryan_Wong_AS91892.Data.ItemShopContext context)
         {
             _context = context;
         }
@@ -23,13 +24,23 @@ namespace Ryan_Wong_AS91892.Pages.Items
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public IList<Item> Items { get; set; }
+        public PaginatedList<Item> Items { get;set; }
 
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder,
+         string currentFilter, string searchString, int? pageIndex)
         {
-            // using System;
+            CurrentSort = sortOrder;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            PriceSort = sortOrder == "Price" ? "Price_desc" : "Price";
+            PriceSort = sortOrder == "Price" ? "price_desc" : "Price";
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             IQueryable<Item> studentsIQ = from s in _context.Items
                                              select s;
 
@@ -41,12 +52,17 @@ namespace Ryan_Wong_AS91892.Pages.Items
                 case "Price":
                     studentsIQ = studentsIQ.OrderBy(s => s.Price);
                     break;
+                case "price_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.Price);
+                    break;
                 default:
-                    studentsIQ = studentsIQ.OrderBy(s => s.ItemID);
+                    studentsIQ = studentsIQ.OrderBy(s => s.Name);
                     break;
             }
 
-            Items = await studentsIQ.AsNoTracking().ToListAsync();
+            int pageSize = 3;
+            Items = await PaginatedList<Item>.CreateAsync(
+                studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }

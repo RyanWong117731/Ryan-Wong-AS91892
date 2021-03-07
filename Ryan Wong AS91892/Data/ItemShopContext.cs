@@ -15,7 +15,7 @@ namespace Ryan_Wong_AS91892.Data
         }
 
         public DbSet<Item> Items { get; set; }
-        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
         public DbSet<Store> Stores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,6 +23,7 @@ namespace Ryan_Wong_AS91892.Data
             modelBuilder.Entity<Item>().ToTable("Item");
             modelBuilder.Entity<Staff>().ToTable("Staff");
             modelBuilder.Entity<Store>().ToTable("Store");
+
         }
     }
 }

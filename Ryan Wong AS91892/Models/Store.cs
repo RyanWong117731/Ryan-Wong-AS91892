@@ -13,7 +13,7 @@ namespace Ryan_Wong_AS91892.Models
         public string Name { get; set; }
         public string Location { get; set; }
 
-        public Item Item { get; set; }
-        public Staff Staff { get; set; }
+        public Item Items { get; set; }
+        public Staff Staffs { get; set; }
     }
 }
