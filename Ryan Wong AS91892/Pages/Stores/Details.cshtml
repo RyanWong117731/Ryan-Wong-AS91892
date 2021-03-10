@@ -23,6 +23,25 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Store.Location)
         </dd>
+        <dt class="col-sm-2">
+            Staff
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Staff</th>
+                </tr>
+                @foreach (var item in Model.Store.StaffAssignmentStores)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Staff.FullName)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </dd>
     </dl>
 </div>
 <div>

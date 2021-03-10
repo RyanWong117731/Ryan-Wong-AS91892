@@ -19,7 +19,7 @@ namespace Ryan_Wong_AS91892.Pages.Stores
             _context = context;
         }
 
-        public IList<Store> Store { get;set; }
+        public IList<Store> Store { get; set; }
 
         public async Task OnGetAsync()
         {

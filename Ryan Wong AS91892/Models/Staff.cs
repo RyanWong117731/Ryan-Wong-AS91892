@@ -35,5 +35,5 @@ namespace Ryan_Wong_AS91892.Models
         }
 
         public ICollection<StaffAssignment> StaffAssignment { get; set; }
-}
+    }
 }
