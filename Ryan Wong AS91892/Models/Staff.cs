@@ -10,7 +10,7 @@ namespace Ryan_Wong_AS91892.Models
     public class Staff
     {
         public int StaffID { get; set; }
-        
+
         [Required]
         [Column("FirstName")]
         [Display(Name = "First Name")]
@@ -34,6 +34,6 @@ namespace Ryan_Wong_AS91892.Models
             get { return LastName + ", " + FirstName; }
         }
 
-        public ICollection<Store> Stores { get; set; }
-    }
+        public ICollection<StaffAssignment> StaffAssignment { get; set; }
+}
 }
