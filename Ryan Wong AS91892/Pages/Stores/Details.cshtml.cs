@@ -29,10 +29,9 @@ namespace Ryan_Wong_AS91892.Pages.Stores
             }
 
             Store = await _context.Stores
-             .Include(s => s.StaffAssignmentStores)
-             .ThenInclude(e => e.Staff)
-             .AsNoTracking()
-             .FirstOrDefaultAsync(m => m.StoreID == id);
+            .Include(s => s.Staffs)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.StoreID == id);
 
             if (Store == null)
             {

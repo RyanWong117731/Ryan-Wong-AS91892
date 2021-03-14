@@ -34,6 +34,8 @@ namespace Ryan_Wong_AS91892.Models
             get { return LastName + ", " + FirstName; }
         }
 
+        public Store Store { get; set; }
         public ICollection<StaffAssignment> StaffAssignment { get; set; }
+        public ICollection<ItemAssignment> ItemAssignments { get; set; }
     }
 }

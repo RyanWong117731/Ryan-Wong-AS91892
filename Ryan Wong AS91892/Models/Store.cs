@@ -20,8 +20,8 @@ namespace Ryan_Wong_AS91892.Models
         [Display(Name = "Location")]
         public string Location { get; set; }
 
-
-        public ICollection<StaffAssignment> StaffAssignmentStores { get; set; }
-        public ICollection<ItemAssignment> ItemAssignmentStores { get; set; }
-}
+        public ICollection<Staff> Staffs { get; set; }
+        public ICollection<Item> Items { get; set; }
+        public ICollection<StaffAssignment> StaffAssignments { get; set; }
+    }
 }
