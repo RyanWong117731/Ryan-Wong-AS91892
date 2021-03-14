@@ -12,11 +12,6 @@ namespace Ryan_Wong_AS91892.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-
-        [Required]
-        [StringLength(50)]
         [Display(Name = "Location")]
         public string Location { get; set; }
 

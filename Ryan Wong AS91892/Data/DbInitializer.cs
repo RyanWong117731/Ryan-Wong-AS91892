@@ -43,8 +43,8 @@ namespace Ryan_Wong_AS91892.Data
 
             var Stores = new Store[]
             {
-                new Store{Name="Store 1",Location="Hell"},
-                new Store{Name="Store 2",Location="Somewhere"}
+                new Store{Location="Hell"},
+                new Store{Location="Somewhere"}
 
             };
 

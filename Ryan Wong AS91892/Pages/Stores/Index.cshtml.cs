@@ -24,13 +24,12 @@ namespace Ryan_Wong_AS91892.Pages.Stores
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public PaginatedList<Store> Stores { get; set; }
+        public PaginatedList<Store> Store { get; set; }
 
         public async Task OnGetAsync(string sortOrder,
          string currentFilter, string searchString, int? pageIndex)
         {
             CurrentSort = sortOrder;
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             LocationSort = String.IsNullOrEmpty(sortOrder) ? "location_desc" : "";
             if (searchString != null)
             {
@@ -42,24 +41,26 @@ namespace Ryan_Wong_AS91892.Pages.Stores
             }
 
             IQueryable<Store> studentsIQ = from s in _context.Stores
-                                          select s;
+                                           select s;
 
             switch (sortOrder)
             {
-                case "name_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.Name);
-                    break;
+                
                 case "location_desc":
                     studentsIQ = studentsIQ.OrderByDescending(s => s.Location);
                     break;
                 default:
-                    studentsIQ = studentsIQ.OrderBy(s => s.Name);
+                    studentsIQ = studentsIQ.OrderBy(s => s.Location);
                     break;
             }
 
             int pageSize = 3;
-            Stores = await PaginatedList<Store>.CreateAsync(
+            Store = await PaginatedList<Store>.CreateAsync(
                 studentsIQ
+                .Include(s => s.StaffAssignments)
+                    .ThenInclude(m => m.Staff)
+                .Include(a => a.ItemAssignments)
+                    .ThenInclude(b => b.Item)
                 .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
