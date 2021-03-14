@@ -24,7 +24,7 @@ namespace Ryan_Wong_AS91892.Pages.Items
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public PaginatedList<Item> Items { get;set; }
+        public PaginatedList<Item> Items { get; set; }
 
         public async Task OnGetAsync(string sortOrder,
          string currentFilter, string searchString, int? pageIndex)
@@ -42,7 +42,7 @@ namespace Ryan_Wong_AS91892.Pages.Items
             }
 
             IQueryable<Item> studentsIQ = from s in _context.Items
-                                             select s;
+                                          select s;
 
             switch (sortOrder)
             {

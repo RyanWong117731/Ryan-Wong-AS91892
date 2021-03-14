@@ -28,7 +28,10 @@ namespace Ryan_Wong_AS91892.Pages.Items
                 return NotFound();
             }
 
-            Item = await _context.Items.FirstOrDefaultAsync(m => m.ItemID == id);
+            Item = await _context.Items
+            .Include(s => s.Store)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.ItemID == id);
 
             if (Item == null)
             {

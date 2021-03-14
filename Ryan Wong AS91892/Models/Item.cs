@@ -26,6 +26,6 @@ namespace Ryan_Wong_AS91892.Models
         [Column("Price")]
         public float Price { get; set; }
 
-        public Store Stores { get; set; }
+        public Store Store { get; set; }
     }
 }

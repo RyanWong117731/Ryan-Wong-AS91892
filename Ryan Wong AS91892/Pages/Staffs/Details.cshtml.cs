@@ -29,10 +29,10 @@ namespace Ryan_Wong_AS91892.Pages.Staffs
             }
 
             Staff = await _context.Staffs
-                .Include(e => e.Store)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.StaffID == id);
-                
+            .Include(s => s.Store)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.StaffID == id);
+
             if (Staff == null)
             {
                 return NotFound();

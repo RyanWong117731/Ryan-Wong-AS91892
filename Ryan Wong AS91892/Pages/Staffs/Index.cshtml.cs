@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Ryan_Wong_AS91892.Data;
 using Ryan_Wong_AS91892.Models;
 
 namespace Ryan_Wong_AS91892.Pages.Staffs
@@ -19,6 +20,7 @@ namespace Ryan_Wong_AS91892.Pages.Staffs
         }
 
         public IList<Staff> Staff { get;set; }
+
         public async Task OnGetAsync()
         {
             Staff = await _context.Staffs.ToListAsync();
