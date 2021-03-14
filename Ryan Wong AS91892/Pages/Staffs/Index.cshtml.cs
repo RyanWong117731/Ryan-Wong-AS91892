@@ -19,11 +19,48 @@ namespace Ryan_Wong_AS91892.Pages.Staffs
             _context = context;
         }
 
-        public IList<Staff> Staff { get;set; }
+        public string NameSort { get; set; }
+        public string WagesSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
 
-        public async Task OnGetAsync()
+        public PaginatedList<Staff> Staff { get; set; }
+
+        public async Task OnGetAsync(string sortOrder,
+         string currentFilter, string searchString, int? pageIndex)
         {
-            Staff = await _context.Staffs.ToListAsync();
+            CurrentSort = sortOrder;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            WagesSort = sortOrder == "Wages" ? "wages_desc" : "Wages";
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            IQueryable<Staff> studentsIQ = from s in _context.Staffs
+                                           select s;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.FirstName);
+                    break;
+                case "Wages":
+                    studentsIQ = studentsIQ.OrderBy(s => s.Wages);
+                    break;
+                default:
+                    studentsIQ = studentsIQ.OrderBy(s => s.FirstName);
+                    break;
+            }
+
+            int pageSize = 3;
+            Staff = await PaginatedList<Staff>.CreateAsync(
+                studentsIQ
+                .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }

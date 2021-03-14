@@ -19,11 +19,48 @@ namespace Ryan_Wong_AS91892.Pages.Stores
             _context = context;
         }
 
-        public IList<Store> Store { get;set; }
+        public string NameSort { get; set; }
+        public string LocationSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
 
-        public async Task OnGetAsync()
+        public PaginatedList<Store> Stores { get; set; }
+
+        public async Task OnGetAsync(string sortOrder,
+         string currentFilter, string searchString, int? pageIndex)
         {
-            Store = await _context.Stores.ToListAsync();
+            CurrentSort = sortOrder;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            LocationSort = String.IsNullOrEmpty(sortOrder) ? "location_desc" : "";
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            IQueryable<Store> studentsIQ = from s in _context.Stores
+                                          select s;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.Name);
+                    break;
+                case "location_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.Location);
+                    break;
+                default:
+                    studentsIQ = studentsIQ.OrderBy(s => s.Name);
+                    break;
+            }
+
+            int pageSize = 3;
+            Stores = await PaginatedList<Store>.CreateAsync(
+                studentsIQ
+                .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }

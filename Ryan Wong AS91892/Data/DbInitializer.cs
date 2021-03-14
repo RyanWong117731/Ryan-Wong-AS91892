@@ -33,7 +33,9 @@ namespace Ryan_Wong_AS91892.Data
 
             var Staffs = new Staff[]
             {
-                new Staff{FirstName="Gus", LastName="Carsons",HireDate=DateTime.Parse("2019-09-01"),Wages=5}
+                new Staff{FirstName="Gus", LastName="Carsons",HireDate=DateTime.Parse("2019-09-01"),Wages=5},
+                new Staff{FirstName="Steve", LastName="Creggory",HireDate=DateTime.Parse("2018-02-14"),Wages=10},
+                new Staff{FirstName="Guy", LastName="Jones",HireDate=DateTime.Parse("2015-10-24"),Wages=2}
             };
 
             context.Staffs.AddRange(Staffs);
@@ -41,7 +43,8 @@ namespace Ryan_Wong_AS91892.Data
 
             var Stores = new Store[]
             {
-                new Store{Name="Store 1",Location="Hell"}
+                new Store{Name="Store 1",Location="Hell"},
+                new Store{Name="Store 2",Location="Somewhere"}
 
             };
 
