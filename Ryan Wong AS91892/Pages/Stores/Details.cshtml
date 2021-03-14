@@ -12,41 +12,51 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-             Location
+            @Html.DisplayNameFor(Model => Model.Store.Location)
         </dt>
         <dd class=" = col-sm-10">
             @Html.DisplayFor(Model => Model.Store.Location)
         </dd>
 
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Store.Staffs)
+        </dt>
+        
         <dd class="col-sm-10">
             <table class="table">
                 <tr>
                     <th>Staff</th>
                 </tr>
                 @foreach (var item in Model.Store.StaffAssignments)
-                 {
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Staff.FullName)
                         </td>
                     </tr>
-                 }
+                }
             </table>
         </dd>
 
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Store.Items)
+        </dt>
+        
         <dd class="col-sm-10">
             <table class="table">
                 <tr>
                     <th>Items</th>
                 </tr>
                 @foreach (var item in Model.Store.ItemAssignments)
-                 {
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Item.Name)
                         </td>
                     </tr>
-                 }
+                }
             </table>
         </dd>
     </dl>

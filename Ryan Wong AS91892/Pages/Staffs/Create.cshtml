@@ -14,29 +14,29 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Staff.FirstName" class="control-label"></label>
+                <label asp-for="Staff.FirstName" class="control-label">First Name</label>
                 <input asp-for="Staff.FirstName" class="form-control" />
                 <span asp-validation-for="Staff.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Staff.LastName" class="control-label"></label>
+                <label asp-for="Staff.LastName" class="control-label">Last Name</label>
                 <input asp-for="Staff.LastName" class="form-control" />
                 <span asp-validation-for="Staff.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Staff.Wages" class="control-label"></label>
+                <label asp-for="Staff.Wages" class="control-label">Wages</label>
                 <input asp-for="Staff.Wages" class="form-control" />
                 <span asp-validation-for="Staff.Wages" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Staff.HireDate" class="control-label"></label>
+                <label asp-for="Staff.HireDate" class="control-label">Hire Date</label>
                 <input asp-for="Staff.HireDate" class="form-control" />
                 <span asp-validation-for="Staff.HireDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Staff.Store.StoreID" class="control-label"></label>
-                <input asp-for="Staff.Store.StoreID" class="form-control" />
-                <span asp-validation-for="Staff.Store.StoreID" class="text-danger"></span>
+                <label asp-for="Staff.Store.Location" class="control-label">Location</label>
+                <input asp-for="Staff.Store.Location" class="form-control" />
+                <span asp-validation-for="Staff.Store.Location" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
