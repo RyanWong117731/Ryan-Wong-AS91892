@@ -57,10 +57,8 @@ namespace Ryan_Wong_AS91892.Pages.Stores
             int pageSize = 3;
             Store = await PaginatedList<Store>.CreateAsync(
                 studentsIQ
-                .Include(s => s.StaffAssignments)
-                    .ThenInclude(m => m.Staff)
-                .Include(a => a.ItemAssignments)
-                    .ThenInclude(b => b.Item)
+                .Include(s => s.Staffs)
+                .Include(a => a.Items)
                 .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }

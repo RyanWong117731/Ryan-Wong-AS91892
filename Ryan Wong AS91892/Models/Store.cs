@@ -17,7 +17,5 @@ namespace Ryan_Wong_AS91892.Models
 
         public ICollection<Staff> Staffs { get; set; }
         public ICollection<Item> Items { get; set; }
-        public ICollection<StaffAssignment> StaffAssignments { get; set; }
-        public ICollection<ItemAssignment> ItemAssignments { get; set; }
     }
 }

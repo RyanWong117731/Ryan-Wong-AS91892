@@ -20,7 +20,7 @@
 
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(Model => Model.Store.Staffs)
+           Staff
         </dt>
         
         <dd class="col-sm-10">
@@ -28,11 +28,11 @@
                 <tr>
                     <th>Staff</th>
                 </tr>
-                @foreach (var item in Model.Store.StaffAssignments)
+                @foreach (var item in Model.Store.Staffs)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Staff.FullName)
+                            @Html.DisplayFor(modelItem => item.FullName)
                         </td>
                     </tr>
                 }
@@ -41,7 +41,7 @@
 
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(Model => Model.Store.Items)
+              Items
         </dt>
         
         <dd class="col-sm-10">
@@ -49,11 +49,11 @@
                 <tr>
                     <th>Items</th>
                 </tr>
-                @foreach (var item in Model.Store.ItemAssignments)
+                @foreach (var item in Model.Store.Items)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Item.Name)
+                            @Html.DisplayFor(modelItem => item.Name)
                         </td>
                     </tr>
                 }
